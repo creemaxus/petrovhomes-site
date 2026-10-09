@@ -26,14 +26,14 @@ const jsonLd = [
 ];
 
 const photoCommunities = [
-  { slug: "edmonds", image: "edmondsFerry" },
-  { slug: "mukilteo", image: "mukilteoLight" },
+  { slug: "edmonds", image: "communityEdmonds" },
+  { slug: "mukilteo", image: "communityMukilteo" },
 ];
 const textCommunities = ["lynnwood", "everett", "bothell", "mill-creek"].map((slug) =>
   communities.find((c) => c.slug === slug),
 );
 
-const card = ({ href, image, eyebrow, title, text, position }) => `<a class="photo-card" href="${href}">
+const card = ({ href, image, eyebrow, title, text, position, tone = "" }) => `<a class="photo-card${tone ? ` photo-card--${tone}` : ""}" href="${href}">
             ${picture(image, { sizes: "(min-width: 60em) 30vw, 100vw", className: "photo-card__media", alt: "", position })}
             <span class="photo-card__shade" aria-hidden="true"></span>
             <span class="photo-card__copy">
@@ -54,7 +54,7 @@ export default {
   jsonLd,
   content: () => `
       <section class="hero" aria-labelledby="hero-title">
-        ${picture("mukilteoLighthouse", { sizes: "100vw", priority: true, className: "hero__media", position: "50% 40%" })}
+        ${picture("homeHeroNorthwest", { sizes: "100vw", priority: true, className: "hero__media" })}
         <div class="hero__shade" aria-hidden="true"></div>
         <div class="container hero__inner">
           <p class="hero__eyebrow">Max Petrov · Washington Real Estate</p>
@@ -75,27 +75,27 @@ export default {
           <div class="services__grid">
           ${card({
             href: "/buyers/",
-            image: "edmondsFerry",
+            image: "serviceBuyersInterior",
             eyebrow: "For buyers",
             title: "Find your next home.",
             text: "Explore your options with a practical eye for condition, potential, and fit.",
-            position: "50% 46%",
+            tone: "interior",
           })}
           ${card({
             href: "/sellers/",
-            image: "mukilteoLight",
+            image: "serviceSellersExterior",
             eyebrow: "For sellers",
             title: "Make your next move.",
             text: "Prepare thoughtfully, price with context, and present your home with care.",
-            position: "50% 38%",
+            tone: "porch",
           })}
           ${card({
             href: "/communities/",
-            image: "mukilteoLighthouse",
+            image: "serviceCommunitiesRegion",
             eyebrow: "Local communities",
             title: "Discover the Northwest.",
             text: "Explore the places that could become your next neighborhood.",
-            position: "78% 58%",
+            tone: "aerial",
           })}
           </div>
         </div>
@@ -107,7 +107,7 @@ export default {
           <div class="meet__text">
             <p class="eyebrow">Meet Max Petrov</p>
             <h2 class="display-2" id="meet-title">See beyond the photos.</h2>
-            <p>Max Petrov helps buyers and sellers across Snohomish and King counties. He brings ${site.constructionExperience} to the way he looks at a house: how it was built, how it has been maintained, and what a change would actually involve. That construction background is separate from his work as an agent. It helps buyers weigh condition and renovation potential before they commit, and it helps sellers decide which preparation is worth doing. Max keeps the conversation clear, works alongside your inspector and lender, and meets with clients in English or Russian.</p>
+            <p>Max Petrov helps buyers and sellers across Snohomish and King counties. He brings ${site.constructionExperience} to the way he evaluates homes: how a house was built, how it has been maintained, and what a change would actually involve. That helps buyers weigh condition and renovation potential, and it helps sellers decide which preparation is worth doing. Max keeps the conversation clear, works alongside your inspector and lender, and meets with clients in English or Russian.</p>
             <a class="text-link" href="/about/">Get to Know Max <span aria-hidden="true">→</span></a>
             <ul class="meet__points">
               <li>Construction perspective</li>
@@ -149,7 +149,7 @@ export default {
       </section>
 
       <section class="seller-band" aria-labelledby="seller-band-title">
-        ${picture("edmondsFerry", { sizes: "100vw", className: "seller-band__media", alt: "", position: "50% 62%" })}
+        ${picture("sellerConsultationExterior", { sizes: "100vw", className: "seller-band__media", alt: "" })}
         <div class="seller-band__shade" aria-hidden="true"></div>
         <div class="container seller-band__inner">
           <p class="hero__eyebrow">Thinking about selling?</p>
@@ -180,7 +180,7 @@ export default {
         </div>
       </section>
 
-      <section class="section section--navy home-close" aria-labelledby="close-title">
+      <section class="section section--slate home-close" aria-labelledby="close-title">
         <div class="container home-close__inner">
           <div>
             <h2 class="display-2" id="close-title">Your next move starts with a conversation.</h2>

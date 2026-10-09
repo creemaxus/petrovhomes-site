@@ -34,7 +34,7 @@ export default {
         eyebrow: "Buyers",
         title: "Buying a home in Snohomish and King counties",
         lead: "A clear process, and a practical second look at every house you’re seriously considering.",
-        image: "edmondsFerry",
+        image: "serviceBuyersInterior",
         layout: "bleed",
       })}
 

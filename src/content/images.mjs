@@ -1,11 +1,12 @@
 // Optimized images in public/assets/images/, served as AVIF with a WebP
 // fallback at each listed width (file-WIDTH.avif / file-WIDTH.webp).
 //
-// `position` is the object-position used when the image is cropped, chosen so
-// the face stays in frame. `positionMobile` overrides it below 760px.
+// `position` is the object-position used when the image is cropped.
+// `positionMobile` overrides it below 760px.
 //
 // Portraits are derived from the originals in references/ (not published).
-// Mukilteo and Edmonds photographs are public domain (CC0); see IMAGE_CREDITS.md.
+// Place photographs are CC0, public domain, or Pexels (no attribution
+// required). See IMAGE_CREDITS.md.
 
 const portrait = { widths: [480, 800, 1024], ratio: [2, 3] };
 
@@ -55,25 +56,65 @@ export const images = {
     position: "50% 28%",
     alt: "Max Petrov at an outdoor café table with a coffee mug and laptop",
   },
-  mukilteoLighthouse: {
-    file: "mukilteo-lighthouse-park",
-    widths: [800, 1400, 2400],
+  homeHeroNorthwest: {
+    file: "home-hero-northwest",
+    widths: [960, 1600, 2250],
     ratio: [16, 9],
-    position: "50% 45%",
-    alt: "Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline",
+    position: "42% 48%",
+    positionMobile: "28% 58%",
+    alt: "Mukilteo’s waterfront, with the lighthouse, historic houses, and the ferry dock on Possession Sound",
   },
-  mukilteoLight: {
-    file: "mukilteo-lighthouse",
-    widths: [800, 1400, 2000],
-    ratio: [1, 1],
+  serviceBuyersInterior: {
+    file: "service-buyers-interior",
+    widths: [480, 900],
+    ratio: [3, 2],
+    position: "38% 78%",
+    positionMobile: "32% 82%",
+    alt: "A bright living room with a sofa, windows, and an open kitchen beyond",
+  },
+  serviceSellersExterior: {
+    file: "service-sellers-exterior",
+    widths: [480, 900],
+    ratio: [2, 3],
     position: "50% 42%",
+    positionMobile: "50% 36%",
+    alt: "A craftsman-style house with a front porch, stone steps, and trees",
+  },
+  serviceCommunitiesRegion: {
+    file: "service-communities-region",
+    widths: [480, 900],
+    ratio: [4, 3],
+    position: "72% 58%",
+    positionMobile: "78% 62%",
+    alt: "Aerial view of Mukilteo Lighthouse Park, with the lighthouse, historic quarters, and the shoreline",
+  },
+  communityEdmonds: {
+    file: "community-edmonds",
+    widths: [480, 900],
+    ratio: [4, 3],
+    position: "50% 58%",
+    alt: "Mount Rainier across Puget Sound, seen from the Edmonds–Kingston ferry",
+  },
+  communityMukilteo: {
+    file: "community-mukilteo",
+    widths: [480, 900],
+    ratio: [1, 1],
+    position: "50% 38%",
     alt: "The white Mukilteo Lighthouse and keeper’s quarters beside Possession Sound",
   },
-  edmondsFerry: {
-    file: "edmonds-ferry-rainier",
-    widths: [960, 1600, 2400],
-    ratio: [4, 3],
-    position: "50% 42%",
-    alt: "Mount Rainier across Puget Sound, seen from the Edmonds–Kingston ferry",
+  sellerConsultationExterior: {
+    file: "seller-consultation-exterior",
+    widths: [960, 1920],
+    ratio: [3, 2],
+    position: "38% 45%",
+    positionMobile: "50% 40%",
+    alt: "A craftsman-style house at dusk, with a brick path, garden, and warm interior lights",
+  },
+  sellersPageExterior: {
+    file: "sellers-page-exterior",
+    widths: [960, 1920],
+    ratio: [16, 9],
+    position: "50% 48%",
+    alt: "A two-story house with a front porch, landscaping, and a driveway",
   },
 };

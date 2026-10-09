@@ -11,7 +11,7 @@ export default {
         eyebrow: "Sellers",
         title: "Selling your home in Snohomish and King counties",
         lead: "A practical plan for pricing, preparing, and presenting your home.",
-        image: "mukilteoLight",
+        image: "sellersPageExterior",
         layout: "bleed",
       })}
 

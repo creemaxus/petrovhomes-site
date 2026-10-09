@@ -12,7 +12,7 @@ export default {
         eyebrow: "Communities",
         title: "Communities in Snohomish and King counties",
         lead: "Six places where Max helps buyers and sellers, from Puget Sound waterfront towns to established suburbs along I-5 and I-405.",
-        image: "mukilteoLighthouse",
+        image: "serviceCommunitiesRegion",
         layout: "bleed",
       })}
 
@@ -21,12 +21,12 @@ export default {
           <h2 class="visually-hidden" id="community-guides">Community guides</h2>
           <div class="places__photos">
             <a class="place-card" href="#edmonds">
-              ${picture("edmondsFerry", { sizes: "(min-width: 48em) 40vw, 100vw", eager: true, className: "place-card__media", alt: "" })}
+              ${picture("communityEdmonds", { sizes: "(min-width: 48em) 40vw, 100vw", eager: true, className: "place-card__media", alt: "" })}
               <span class="place-card__shade" aria-hidden="true"></span>
               <span class="place-card__name">Edmonds <span aria-hidden="true">→</span></span>
             </a>
             <a class="place-card" href="#mukilteo">
-              ${picture("mukilteoLight", { sizes: "(min-width: 48em) 40vw, 100vw", className: "place-card__media", alt: "" })}
+              ${picture("communityMukilteo", { sizes: "(min-width: 48em) 40vw, 100vw", className: "place-card__media", alt: "" })}
               <span class="place-card__shade" aria-hidden="true"></span>
               <span class="place-card__name">Mukilteo <span aria-hidden="true">→</span></span>
             </a>
