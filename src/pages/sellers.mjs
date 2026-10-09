@@ -11,10 +11,11 @@ export default {
         eyebrow: "Sellers",
         title: "Selling your home in Snohomish and King counties",
         lead: "A practical plan for pricing, preparing, and presenting your home.",
-        image: "maxBrick",
+        image: "mukilteoLight",
+        layout: "bleed",
       })}
 
-      <section class="section section--ivory" aria-labelledby="process-title">
+      <section class="section section--white" aria-labelledby="process-title">
         <div class="container two-col">
           <div class="two-col__aside">
             <p class="eyebrow">The process</p>

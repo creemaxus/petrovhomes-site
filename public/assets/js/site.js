@@ -7,10 +7,12 @@
   const nav = document.getElementById("site-nav");
 
   if (toggle && nav) {
+    const header = toggle.closest(".site-header");
     const setOpen = (open, { returnFocus = false } = {}) => {
       toggle.setAttribute("aria-expanded", String(open));
       toggle.querySelector(".nav-toggle__label").textContent = open ? "Close" : "Menu";
       nav.classList.toggle("is-open", open);
+      header?.classList.toggle("is-menu", open);
       if (!open && returnFocus) toggle.focus();
     };
 
@@ -39,6 +41,17 @@
     window.matchMedia("(min-width: 56.0625em)").addEventListener("change", (event) => {
       if (event.matches) setOpen(false);
     });
+  }
+
+  const headerBar = document.querySelector(".page-home .site-header");
+  const hero = document.querySelector(".hero");
+  if (headerBar && hero) {
+    const syncHeader = () => {
+      headerBar.classList.toggle("is-stuck", window.scrollY > hero.offsetHeight - headerBar.offsetHeight);
+    };
+    syncHeader();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+    window.addEventListener("resize", syncHeader);
   }
 
   // Contact form (only present once an endpoint is configured)

@@ -34,10 +34,11 @@ export default {
         eyebrow: "Buyers",
         title: "Buying a home in Snohomish and King counties",
         lead: "A clear process, and a practical second look at every house you’re seriously considering.",
-        image: "maxHouse",
+        image: "edmondsFerry",
+        layout: "bleed",
       })}
 
-      <section class="section section--ivory" aria-labelledby="process-title">
+      <section class="section section--white" aria-labelledby="process-title">
         <div class="container two-col">
           <div class="two-col__aside">
             <p class="eyebrow">The process</p>
@@ -68,7 +69,7 @@ export default {
         </div>
       </section>
 
-      <section class="section section--ivory-deep" aria-labelledby="faq-title">
+      <section class="section section--ivory" aria-labelledby="faq-title">
         <div class="container two-col">
           <div class="two-col__aside">
             <p class="eyebrow">Questions</p>

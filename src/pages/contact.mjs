@@ -89,10 +89,9 @@ export default {
         eyebrow: "Contact",
         title: "Let’s talk about your move",
         lead: "Starting to explore or ready to make a plan, the first step is a conversation about your goals and timing.",
-        image: "maxCafeLaptop",
       })}
 
-      <section class="section section--ivory">
+      <section class="section section--white">
         <div class="container contact">
           <div class="contact__info">
             <h2 class="display-3">What to expect</h2>

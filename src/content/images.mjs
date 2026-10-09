@@ -5,7 +5,7 @@
 // the face stays in frame. `positionMobile` overrides it below 760px.
 //
 // Portraits are derived from the originals in references/ (not published).
-// The Mukilteo photo is public domain (CC0); see IMAGE_CREDITS.md.
+// Mukilteo and Edmonds photographs are public domain (CC0); see IMAGE_CREDITS.md.
 
 const portrait = { widths: [480, 800, 1024], ratio: [2, 3] };
 
@@ -57,9 +57,23 @@ export const images = {
   },
   mukilteoLighthouse: {
     file: "mukilteo-lighthouse-park",
-    widths: [800, 1400],
+    widths: [800, 1400, 2400],
     ratio: [16, 9],
-    position: "50% 50%",
-    alt: "Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline beyond",
+    position: "50% 45%",
+    alt: "Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline",
+  },
+  mukilteoLight: {
+    file: "mukilteo-lighthouse",
+    widths: [800, 1400, 2000],
+    ratio: [1, 1],
+    position: "50% 42%",
+    alt: "The white Mukilteo Lighthouse and keeper’s quarters beside Possession Sound",
+  },
+  edmondsFerry: {
+    file: "edmonds-ferry-rainier",
+    widths: [960, 1600, 2400],
+    ratio: [4, 3],
+    position: "50% 42%",
+    alt: "Mount Rainier across Puget Sound, seen from the Edmonds–Kingston ferry",
   },
 };

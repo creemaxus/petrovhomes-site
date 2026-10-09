@@ -1,5 +1,5 @@
 import { site } from "../site.config.mjs";
-import { pageHeader, picture, closingCta, esc } from "../layout.mjs";
+import { pageHeader, closingCta, esc } from "../layout.mjs";
 
 export default {
   path: "/about/",
@@ -15,7 +15,7 @@ export default {
         image: "maxOutdoor",
       })}
 
-      <section class="section section--ivory">
+      <section class="section section--white">
         <div class="container about">
           <div class="prose about__body">
             <p class="prose__lede">Max Petrov is the real estate agent behind Petrov Homes, helping people buy and sell in Snohomish and King counties.</p>
@@ -31,12 +31,8 @@ export default {
         </div>
       </section>
 
-      <section class="section section--ivory-deep" aria-labelledby="approach-title">
+      <section class="section section--ivory" aria-labelledby="approach-title">
         <div class="container approach">
-          <div class="approach__photos">
-            ${picture("maxCafe", { sizes: "(min-width: 60em) 30vw, 70vw", className: "approach__main" })}
-            ${picture("maxStudioClose", { sizes: "(min-width: 60em) 18vw, 42vw", className: "approach__inset" })}
-          </div>
           <div class="approach__text">
             <p class="eyebrow">How Max works</p>
             <h2 class="display-2" id="approach-title">Practical, direct, and built around your plans.</h2>

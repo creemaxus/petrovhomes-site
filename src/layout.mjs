@@ -5,11 +5,11 @@ import { site } from "./site.config.mjs";
 import { images } from "./content/images.mjs";
 
 export const nav = [
-  { href: "/about/", label: "About" },
-  { href: "/buyers/", label: "Buyers" },
-  { href: "/sellers/", label: "Sellers" },
+  { href: "/buyers/", label: "Buy" },
+  { href: "/sellers/", label: "Sell" },
   { href: "/communities/", label: "Communities" },
-  { href: "/contact/", label: "Contact", cta: "Let’s talk" },
+  { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
 ];
 
 export function esc(value) {
@@ -28,7 +28,7 @@ export const absoluteUrl = (path) => new URL(path, site.url).href;
 // the entry's focal point (override per use with position / positionMobile).
 export function picture(
   key,
-  { sizes = "100vw", eager = false, priority = false, className = "", position, positionMobile } = {},
+  { sizes = "100vw", eager = false, priority = false, className = "", position, positionMobile, alt } = {},
 ) {
   const image = images[key];
   const largest = image.widths.at(-1);
@@ -39,19 +39,29 @@ export function picture(
   const pos = position ?? image.position;
   const posMobile = positionMobile ?? image.positionMobile;
   const style = `--pos: ${pos}${posMobile ? `; --pos-m: ${posMobile}` : ""}`;
+  const altText = alt === "" ? "" : esc(alt ?? image.alt);
   return `<picture class="frame ${className}">
             <source type="image/avif" srcset="${srcset("avif")}" sizes="${sizes}">
-            <img src="${fallback}" srcset="${srcset("webp")}" sizes="${sizes}" width="${largest}" height="${height}" alt="${esc(image.alt)}" style="${style}" ${loading} decoding="async">
+            <img src="${fallback}" srcset="${srcset("webp")}" sizes="${sizes}" width="${largest}" height="${height}" alt="${altText}" style="${style}" ${loading} decoding="async">
           </picture>`;
 }
 
 // Interior page header. With an image it becomes a text / portrait split.
-export function pageHeader({ eyebrow, title, lead, image, imageOptions = {} }) {
+export function pageHeader({ eyebrow, title, lead, image, imageOptions = {}, layout = "split" }) {
   const text = `<div class="page-header__text">
             <p class="eyebrow eyebrow--light">${eyebrow}</p>
             <h1 class="display-1">${title}</h1>
             ${lead ? `<p class="page-header__lead">${lead}</p>` : ""}
           </div>`;
+  if (image && layout === "bleed") {
+    return `<section class="page-hero">
+        ${picture(image, { sizes: "100vw", eager: true, priority: true, className: "page-hero__media", ...imageOptions })}
+        <div class="page-hero__shade" aria-hidden="true"></div>
+        <div class="container page-hero__inner">
+          ${text}
+        </div>
+      </section>`;
+  }
   if (!image) {
     return `<section class="page-header">
         <div class="container page-header__inner">
@@ -150,10 +160,9 @@ function wordmark() {
 
 function header(page) {
   const links = nav
-    .map(({ href, label, cta }) => {
+    .map(({ href, label }) => {
       const current = page.path.startsWith(href) ? ` aria-current="page"` : "";
-      const cls = cta ? ` class="site-nav__cta"` : "";
-      return `<li><a href="${href}"${cls}${current}>${cta ?? label}</a></li>`;
+      return `<li><a href="${href}"${current}>${label}</a></li>`;
     })
     .join("\n            ");
   return `<a class="skip-link" href="#main">Skip to content</a>
@@ -200,7 +209,7 @@ function footer() {
         <div class="site-footer__top">
           <div class="site-footer__brand">
             ${wordmark()}
-            <p class="site-footer__tagline">See beyond the photos.</p>
+            <p class="site-footer__tagline">See beyond the photos. Buying and selling in Snohomish and King counties.</p>
           </div>
           <div>
             <h2 class="footer-heading">Service area</h2>

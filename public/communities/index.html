@@ -41,18 +41,23 @@
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Main">
           <ul>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/buyers/">Buyers</a></li>
-            <li><a href="/sellers/">Sellers</a></li>
+            <li><a href="/buyers/">Buy</a></li>
+            <li><a href="/sellers/">Sell</a></li>
             <li><a href="/communities/" aria-current="page">Communities</a></li>
-            <li><a href="/contact/" class="site-nav__cta">Let’s talk</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
           </ul>
         </nav>
       </div>
     </header>
     <main id="main">
-<section class="page-header">
-        <div class="container page-header__inner">
+<section class="page-hero">
+        <picture class="frame page-hero__media">
+            <source type="image/avif" srcset="/assets/images/mukilteo-lighthouse-park-800.avif 800w, /assets/images/mukilteo-lighthouse-park-1400.avif 1400w, /assets/images/mukilteo-lighthouse-park-2400.avif 2400w" sizes="100vw">
+            <img src="/assets/images/mukilteo-lighthouse-park-1400.webp" srcset="/assets/images/mukilteo-lighthouse-park-800.webp 800w, /assets/images/mukilteo-lighthouse-park-1400.webp 1400w, /assets/images/mukilteo-lighthouse-park-2400.webp 2400w" sizes="100vw" width="2400" height="1350" alt="Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline" style="--pos: 50% 45%" fetchpriority="high" decoding="async">
+          </picture>
+        <div class="page-hero__shade" aria-hidden="true"></div>
+        <div class="container page-hero__inner">
           <div class="page-header__text">
             <p class="eyebrow eyebrow--light">Communities</p>
             <h1 class="display-1">Communities in Snohomish and King counties</h1>
@@ -61,15 +66,27 @@
         </div>
       </section>
 
-      <section class="section section--ivory communities" aria-label="Community guides">
+      <section class="section section--white communities" aria-labelledby="community-guides">
         <div class="container">
-          <figure class="communities__figure">
-            <picture class="frame communities__media">
-            <source type="image/avif" srcset="/assets/images/mukilteo-lighthouse-park-800.avif 800w, /assets/images/mukilteo-lighthouse-park-1400.avif 1400w" sizes="(min-width: 80em) 76rem, 100vw">
-            <img src="/assets/images/mukilteo-lighthouse-park-1400.webp" srcset="/assets/images/mukilteo-lighthouse-park-800.webp 800w, /assets/images/mukilteo-lighthouse-park-1400.webp 1400w" sizes="(min-width: 80em) 76rem, 100vw" width="1400" height="788" alt="Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline beyond" style="--pos: 50% 50%" loading="eager" decoding="async">
+          <h2 class="visually-hidden" id="community-guides">Community guides</h2>
+          <div class="places__photos">
+            <a class="place-card" href="#edmonds">
+              <picture class="frame place-card__media">
+            <source type="image/avif" srcset="/assets/images/edmonds-ferry-rainier-960.avif 960w, /assets/images/edmonds-ferry-rainier-1600.avif 1600w, /assets/images/edmonds-ferry-rainier-2400.avif 2400w" sizes="(min-width: 48em) 40vw, 100vw">
+            <img src="/assets/images/edmonds-ferry-rainier-1600.webp" srcset="/assets/images/edmonds-ferry-rainier-960.webp 960w, /assets/images/edmonds-ferry-rainier-1600.webp 1600w, /assets/images/edmonds-ferry-rainier-2400.webp 2400w" sizes="(min-width: 48em) 40vw, 100vw" width="2400" height="1800" alt="" style="--pos: 50% 42%" loading="eager" decoding="async">
           </picture>
-            <figcaption>Mukilteo Lighthouse Park</figcaption>
-          </figure>
+              <span class="place-card__shade" aria-hidden="true"></span>
+              <span class="place-card__name">Edmonds <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="place-card" href="#mukilteo">
+              <picture class="frame place-card__media">
+            <source type="image/avif" srcset="/assets/images/mukilteo-lighthouse-800.avif 800w, /assets/images/mukilteo-lighthouse-1400.avif 1400w, /assets/images/mukilteo-lighthouse-2000.avif 2000w" sizes="(min-width: 48em) 40vw, 100vw">
+            <img src="/assets/images/mukilteo-lighthouse-1400.webp" srcset="/assets/images/mukilteo-lighthouse-800.webp 800w, /assets/images/mukilteo-lighthouse-1400.webp 1400w, /assets/images/mukilteo-lighthouse-2000.webp 2000w" sizes="(min-width: 48em) 40vw, 100vw" width="2000" height="2000" alt="" style="--pos: 50% 42%" loading="lazy" decoding="async">
+          </picture>
+              <span class="place-card__shade" aria-hidden="true"></span>
+              <span class="place-card__name">Mukilteo <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
 
           <nav class="community-jump" aria-label="Communities on this page">
             <ul>
@@ -190,7 +207,7 @@
           <span class="wordmark__rule" aria-hidden="true"></span>
           <span class="wordmark__sub">Homes</span>
         </a>
-            <p class="site-footer__tagline">See beyond the photos.</p>
+            <p class="site-footer__tagline">See beyond the photos. Buying and selling in Snohomish and King counties.</p>
           </div>
           <div>
             <h2 class="footer-heading">Service area</h2>
@@ -203,10 +220,10 @@
           <nav aria-label="Footer">
             <h2 class="footer-heading">Explore</h2>
             <ul class="footer-list">
-              <li><a href="/about/">About</a></li>
-              <li><a href="/buyers/">Buyers</a></li>
-              <li><a href="/sellers/">Sellers</a></li>
+              <li><a href="/buyers/">Buy</a></li>
+              <li><a href="/sellers/">Sell</a></li>
               <li><a href="/communities/">Communities</a></li>
+              <li><a href="/about/">About</a></li>
               <li><a href="/contact/">Contact</a></li>
             </ul>
           </nav>
