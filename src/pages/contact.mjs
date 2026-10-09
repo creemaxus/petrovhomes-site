@@ -1,6 +1,6 @@
 import { site } from "../site.config.mjs";
 import { communities } from "../content/communities.mjs";
-import { pageHeader, contactMethods, esc } from "../layout.mjs";
+import { pageHeader, contactMethods, socialLinks, esc } from "../layout.mjs";
 
 const inquiryTypes = [
   ["buying", "Buying a home"],
@@ -62,7 +62,7 @@ function contactForm() {
 }
 
 function contactPanel() {
-  const methods = contactMethods();
+  const methods = [...contactMethods(), ...socialLinks()];
   const direct = methods.length
     ? `<div class="contact-direct">
             <h2 class="contact-panel__title">Contact Max directly</h2>
@@ -88,7 +88,8 @@ export default {
       ${pageHeader({
         eyebrow: "Contact",
         title: "Let’s talk about your move",
-        lead: "Whether you’re starting to explore or ready to make a plan, the first step is a conversation about your goals, timing, and the home you have in mind.",
+        lead: "Starting to explore or ready to make a plan, the first step is a conversation about your goals and timing.",
+        image: "maxCafeLaptop",
       })}
 
       <section class="section section--ivory">

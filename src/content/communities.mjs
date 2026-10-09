@@ -7,7 +7,6 @@ export const communities = [
     slug: "everett",
     name: "Everett",
     county: "Snohomish County",
-    image: "everettRuckerHill",
     summary:
       "Snohomish County’s largest city and county seat, where the Snohomish River meets Port Gardner Bay. Everett combines a working waterfront, a historic downtown, and major employers, including Boeing’s Everett site.",
     housing:
@@ -19,7 +18,6 @@ export const communities = [
     slug: "edmonds",
     name: "Edmonds",
     county: "Snohomish County",
-    image: "edmondsSunset",
     summary:
       "A Puget Sound waterfront city with a walkable downtown of shops, restaurants, and galleries, and the Washington State Ferries terminal for the Edmonds–Kingston route.",
     housing:
@@ -31,7 +29,6 @@ export const communities = [
     slug: "mukilteo",
     name: "Mukilteo",
     county: "Snohomish County",
-    image: "mukilteoLighthouse",
     summary:
       "A waterfront city on Possession Sound, known for its historic lighthouse and ferry service to Whidbey Island.",
     housing:

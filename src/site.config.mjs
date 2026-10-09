@@ -41,4 +41,8 @@ export const site = {
     // "/api/contact"). The contact form stays hidden until this is set.
     formEndpoint: process.env.CONTACT_FORM_ENDPOINT || null,
   },
+
+  // Social profiles shown in the footer and on the contact page. Add only
+  // real, active profiles, e.g. { label: "Instagram", url: "https://instagram.com/…" }.
+  social: [],
 };

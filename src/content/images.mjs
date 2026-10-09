@@ -1,67 +1,83 @@
-// Licensed photographs used on the site. Files live in public/assets/images/
-// as `${file}-${width}.webp`. See IMAGE_CREDITS.md for sourcing details.
+// Optimized images in public/assets/images/, served as AVIF with a WebP
+// fallback at each listed width (file-WIDTH.avif / file-WIDTH.webp).
 //
-// None of these photos show Max's listings or transactions.
+// `position` is the object-position used when the image is cropped, chosen so
+// the face stays in frame. `positionMobile` overrides it below 760px.
+//
+// Portraits are derived from the originals in references/ (not published).
+// The Mukilteo photo is public domain (CC0); see IMAGE_CREDITS.md.
+
+const portrait = { widths: [480, 800, 1024], ratio: [2, 3] };
 
 export const images = {
-  cedarHouse: {
-    file: "cedar-house",
-    widths: [800, 1200, 2000],
-    ratio: [4, 3],
-    alt: "Modern two-story house clad in vertical cedar siding, with a sculpted metal gate and a stone planter",
-    credit: {
-      author: "pnwra",
-      license: "CC BY 2.0",
-      licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
-      source: "https://commons.wikimedia.org/wiki/File:Modern_House_in_Victoria,_BC,_Canada_-_Flickr_-_pnwra.jpg",
-    },
+  maxMarina: {
+    ...portrait,
+    file: "max-petrov-marina",
+    position: "50% 18%",
+    alt: "Max Petrov in a navy blazer, smiling, with sailboats behind him",
   },
-  wallFraming: {
-    file: "wall-framing",
-    widths: [800, 1400],
-    ratio: [4, 3],
-    alt: "Wood wall studs and sheathing inside a house under construction",
-    credit: {
-      author: "Riisipuuro",
-      license: "CC BY-SA 3.0",
-      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-      source: "https://commons.wikimedia.org/wiki/File:Timber_frame_0857.jpg",
-    },
+  maxHouse: {
+    ...portrait,
+    file: "max-petrov-house-exterior",
+    position: "50% 22%",
+    positionMobile: "50% 6%",
+    alt: "Max Petrov in a cream sweater with arms crossed, standing in front of a house",
   },
-  edmondsSunset: {
-    file: "edmonds-sunset",
-    widths: [900, 1600],
-    ratio: [4, 3],
-    alt: "Sunset over Puget Sound and the Olympic Mountains from the Edmonds waterfront, with people walking along the beach",
-    credit: {
-      author: "pfly",
-      license: "CC BY-SA 2.0",
-      licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/",
-      source: "https://commons.wikimedia.org/wiki/File:Another_Edmonds_sunset_-_Flickr_-_pfly.jpg",
-    },
+  maxInterior: {
+    ...portrait,
+    file: "max-petrov-interior",
+    position: "50% 22%",
+    alt: "Max Petrov in a cream sweater, smiling, in a bright room",
   },
-  everettRuckerHill: {
-    file: "everett-rucker-hill",
-    widths: [800, 1400],
-    ratio: [4, 3],
-    alt: "Craftsman-style houses along a residential street in Everett's Rucker Hill neighborhood in evening light",
-    credit: {
-      author: "Joe Mabel",
-      license: "CC BY-SA 3.0",
-      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-      source: "https://commons.wikimedia.org/wiki/File:Everett_-_houses_on_Warren_Ave.jpg",
-    },
+  maxBrick: {
+    ...portrait,
+    file: "max-petrov-brick-wall",
+    position: "50% 30%",
+    positionMobile: "50% 16%",
+    alt: "Max Petrov in a navy blazer, seated at a table with a coffee mug in front of a brick wall",
+  },
+  maxStudio: {
+    ...portrait,
+    file: "max-petrov-studio",
+    position: "50% 22%",
+    alt: "Studio portrait of Max Petrov in a dark polo shirt with arms crossed",
+  },
+  maxStudioClose: {
+    ...portrait,
+    file: "max-petrov-studio-close",
+    position: "50% 22%",
+    alt: "Studio portrait of Max Petrov in a dark polo shirt, arms crossed, looking at the camera",
+  },
+  maxSkyline: {
+    ...portrait,
+    file: "max-petrov-city-skyline",
+    position: "50% 22%",
+    alt: "Max Petrov in a navy blazer with a city skyline behind him",
+  },
+  maxOutdoor: {
+    ...portrait,
+    file: "max-petrov-outdoor-portrait",
+    position: "50% 12%",
+    positionMobile: "50% 8%",
+    alt: "Portrait of Max Petrov outdoors in a navy blazer",
+  },
+  maxCafe: {
+    ...portrait,
+    file: "max-petrov-cafe",
+    position: "50% 26%",
+    alt: "Max Petrov seated at an outdoor café table with a latte",
+  },
+  maxCafeLaptop: {
+    ...portrait,
+    file: "max-petrov-cafe-laptop",
+    position: "50% 28%",
+    alt: "Max Petrov at an outdoor café table with a coffee mug and laptop",
   },
   mukilteoLighthouse: {
     file: "mukilteo-lighthouse-park",
     widths: [800, 1400],
     ratio: [16, 9],
+    position: "50% 50%",
     alt: "Aerial view of Mukilteo Lighthouse Park, with the white lighthouse, historic quarters, and the shoreline beyond",
-    credit: {
-      author: "Ldub0775",
-      license: "CC0",
-      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-      source: "https://commons.wikimedia.org/wiki/File:Mukilteo_Lighthouse_Park_2026.jpg",
-    },
   },
 };

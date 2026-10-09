@@ -22,30 +22,70 @@ export function esc(value) {
 
 export const absoluteUrl = (path) => new URL(path, site.url).href;
 
-// Responsive <img> for an entry in content/images.mjs. Lazy by default;
-// pass eager for above-the-fold images and priority for the main hero.
-export function picture(key, { sizes = "100vw", eager = false, priority = false, className = "" } = {}) {
+// Responsive <picture> (AVIF, WebP fallback) for an entry in content/images.mjs.
+// Lazy by default; pass eager for above-the-fold images and priority for the
+// main hero. The image fills its frame; crop with the frame's aspect-ratio and
+// the entry's focal point (override per use with position / positionMobile).
+export function picture(
+  key,
+  { sizes = "100vw", eager = false, priority = false, className = "", position, positionMobile } = {},
+) {
   const image = images[key];
   const largest = image.widths.at(-1);
   const height = Math.round((largest * image.ratio[1]) / image.ratio[0]);
-  const src = (w) => `/assets/images/${image.file}-${w}.webp`;
-  const srcset = image.widths.map((w) => `${src(w)} ${w}w`).join(", ");
+  const srcset = (ext) => image.widths.map((w) => `/assets/images/${image.file}-${w}.${ext} ${w}w`).join(", ");
+  const fallback = `/assets/images/${image.file}-${image.widths[1] ?? largest}.webp`;
   const loading = priority ? `fetchpriority="high"` : eager ? `loading="eager"` : `loading="lazy"`;
-  return `<img class="${className}" src="${src(image.widths[1] ?? largest)}" srcset="${srcset}" sizes="${sizes}" width="${largest}" height="${height}" alt="${esc(image.alt)}" ${loading} decoding="async">`;
+  const pos = position ?? image.position;
+  const posMobile = positionMobile ?? image.positionMobile;
+  const style = `--pos: ${pos}${posMobile ? `; --pos-m: ${posMobile}` : ""}`;
+  return `<picture class="frame ${className}">
+            <source type="image/avif" srcset="${srcset("avif")}" sizes="${sizes}">
+            <img src="${fallback}" srcset="${srcset("webp")}" sizes="${sizes}" width="${largest}" height="${height}" alt="${esc(image.alt)}" style="${style}" ${loading} decoding="async">
+          </picture>`;
 }
 
-export function credit(key, { className = "credit", caption = "" } = {}) {
-  const { author, license, licenseUrl, source } = images[key].credit;
-  const lead = caption ? `${esc(caption)} · ` : "";
-  return `<p class="${className}">${lead}Photo: <a href="${source}" rel="noopener">${esc(author)}</a>, <a href="${licenseUrl}" rel="noopener">${license}</a></p>`;
-}
-
-export function pageHeader({ eyebrow, title, lead }) {
-  return `<section class="page-header">
+// Interior page header. With an image it becomes a text / portrait split.
+export function pageHeader({ eyebrow, title, lead, image, imageOptions = {} }) {
+  const text = `<div class="page-header__text">
+            <p class="eyebrow eyebrow--light">${eyebrow}</p>
+            <h1 class="display-1">${title}</h1>
+            ${lead ? `<p class="page-header__lead">${lead}</p>` : ""}
+          </div>`;
+  if (!image) {
+    return `<section class="page-header">
         <div class="container page-header__inner">
-          <p class="eyebrow eyebrow--light">${eyebrow}</p>
-          <h1 class="display-1">${title}</h1>
-          ${lead ? `<p class="page-header__lead">${lead}</p>` : ""}
+          ${text}
+        </div>
+      </section>`;
+  }
+  return `<section class="page-header page-header--media">
+        <div class="container page-header__inner">
+          ${text}
+          ${picture(image, { sizes: "(min-width: 60em) 40vw, 100vw", eager: true, className: "page-header__media", ...imageOptions })}
+        </div>
+      </section>`;
+}
+
+// Closing call to action. With an image, the photo sits beside the text,
+// never behind it.
+export function closingCta({ id, title, lead, href = "/contact/", label = "Let’s talk", image, imageOptions = {} }) {
+  const text = `<div class="closing-cta__inner" data-reveal>
+            <h2 class="display-2" id="${id}">${title}</h2>
+            ${lead ? `<p class="lead">${lead}</p>` : ""}
+            <a class="button button--light" href="${href}">${label}</a>
+          </div>`;
+  if (!image) {
+    return `<section class="section section--navy closing-cta" aria-labelledby="${id}">
+        <div class="container">
+          ${text}
+        </div>
+      </section>`;
+  }
+  return `<section class="section--navy closing-cta closing-cta--photo" aria-labelledby="${id}">
+        ${picture(image, { sizes: "(min-width: 48em) 50vw, 100vw", className: "closing-cta__media", ...imageOptions })}
+        <div class="closing-cta__body">
+          ${text}
         </div>
       </section>`;
 }
@@ -71,6 +111,12 @@ export function contactMethods() {
   return items;
 }
 
+export function socialLinks() {
+  return (site.social ?? [])
+    .filter(({ label, url }) => label && url)
+    .map(({ label, url }) => `<a href="${esc(url)}" rel="noopener me">${esc(label)}</a>`);
+}
+
 function head(page) {
   const canonical = absoluteUrl(page.path);
   const ogImage = absoluteUrl("/assets/images/og-petrov-homes.jpg");
@@ -91,7 +137,7 @@ function head(page) {
 ${page.noindex ? "" : `    <meta property="og:url" content="${canonical}">\n`}    <meta property="og:image" content="${ogImage}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Modern cedar-clad house">
+    <meta property="og:image:alt" content="Max Petrov, Petrov Homes: See beyond the photos.">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#0F1A2B">
@@ -151,11 +197,12 @@ function footer() {
   legal.push(`<p>&copy; ${new Date().getFullYear()} ${esc(site.agentName)}. ${esc(site.brand)} is the personal brand of real estate agent ${esc(site.agentName)}.</p>`);
 
   const methods = contactMethods();
-  const contactBlock = methods.length
+  const social = socialLinks();
+  const contactBlock = methods.length || social.length
     ? `
           <div>
             <h2 class="footer-heading">Contact</h2>
-            <ul class="footer-list">${methods.map((m) => `<li>${m}</li>`).join("")}</ul>
+            <ul class="footer-list">${[...methods, ...social].map((m) => `<li>${m}</li>`).join("")}</ul>
           </div>`
     : "";
 
