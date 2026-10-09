@@ -9,7 +9,7 @@ export const nav = [
   { href: "/buyers/", label: "Buyers" },
   { href: "/sellers/", label: "Sellers" },
   { href: "/communities/", label: "Communities" },
-  { href: "/contact/", label: "Contact" },
+  { href: "/contact/", label: "Contact", cta: "Let’s talk" },
 ];
 
 export function esc(value) {
@@ -67,25 +67,14 @@ export function pageHeader({ eyebrow, title, lead, image, imageOptions = {} }) {
       </section>`;
 }
 
-// Closing call to action. With an image, the photo sits beside the text,
-// never behind it.
-export function closingCta({ id, title, lead, href = "/contact/", label = "Let’s talk", image, imageOptions = {} }) {
-  const text = `<div class="closing-cta__inner" data-reveal>
+export function closingCta({ id, title, lead, href = "/contact/", label = "Let’s talk" }) {
+  return `<section class="section section--navy closing-cta" aria-labelledby="${id}">
+        <div class="container">
+          <div class="closing-cta__inner">
             <h2 class="display-2" id="${id}">${title}</h2>
             ${lead ? `<p class="lead">${lead}</p>` : ""}
             <a class="button button--light" href="${href}">${label}</a>
-          </div>`;
-  if (!image) {
-    return `<section class="section section--navy closing-cta" aria-labelledby="${id}">
-        <div class="container">
-          ${text}
-        </div>
-      </section>`;
-  }
-  return `<section class="section--navy closing-cta closing-cta--photo" aria-labelledby="${id}">
-        ${picture(image, { sizes: "(min-width: 48em) 50vw, 100vw", className: "closing-cta__media", ...imageOptions })}
-        <div class="closing-cta__body">
-          ${text}
+          </div>
         </div>
       </section>`;
 }
@@ -94,7 +83,7 @@ export function steps(items) {
   return `<ol class="steps">
             ${items
               .map(
-                ({ title, body }) => `<li class="steps__item" data-reveal>
+                ({ title, body }) => `<li class="steps__item">
               <h3 class="steps__title">${title}</h3>
               <div class="steps__body">${body}</div>
             </li>`,
@@ -161,10 +150,10 @@ function wordmark() {
 
 function header(page) {
   const links = nav
-    .map(({ href, label }) => {
+    .map(({ href, label, cta }) => {
       const current = page.path.startsWith(href) ? ` aria-current="page"` : "";
-      const cls = href === "/contact/" ? ` class="site-nav__cta"` : "";
-      return `<li><a href="${href}"${cls}${current}>${label}</a></li>`;
+      const cls = cta ? ` class="site-nav__cta"` : "";
+      return `<li><a href="${href}"${cls}${current}>${cta ?? label}</a></li>`;
     })
     .join("\n            ");
   return `<a class="skip-link" href="#main">Skip to content</a>

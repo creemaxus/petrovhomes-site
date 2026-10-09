@@ -23,12 +23,6 @@ export const images = {
     positionMobile: "50% 6%",
     alt: "Max Petrov in a cream sweater with arms crossed, standing in front of a house",
   },
-  maxInterior: {
-    ...portrait,
-    file: "max-petrov-interior",
-    position: "50% 22%",
-    alt: "Max Petrov in a cream sweater, smiling, in a bright room",
-  },
   maxBrick: {
     ...portrait,
     file: "max-petrov-brick-wall",
@@ -36,23 +30,11 @@ export const images = {
     positionMobile: "50% 16%",
     alt: "Max Petrov in a navy blazer, seated at a table with a coffee mug in front of a brick wall",
   },
-  maxStudio: {
-    ...portrait,
-    file: "max-petrov-studio",
-    position: "50% 22%",
-    alt: "Studio portrait of Max Petrov in a dark polo shirt with arms crossed",
-  },
   maxStudioClose: {
     ...portrait,
     file: "max-petrov-studio-close",
     position: "50% 22%",
     alt: "Studio portrait of Max Petrov in a dark polo shirt, arms crossed, looking at the camera",
-  },
-  maxSkyline: {
-    ...portrait,
-    file: "max-petrov-city-skyline",
-    position: "50% 22%",
-    alt: "Max Petrov in a navy blazer with a city skyline behind him",
   },
   maxOutdoor: {
     ...portrait,

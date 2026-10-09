@@ -1,6 +1,6 @@
 import { site } from "../site.config.mjs";
 import { communities } from "../content/communities.mjs";
-import { picture, closingCta, absoluteUrl } from "../layout.mjs";
+import { picture, absoluteUrl } from "../layout.mjs";
 
 const jsonLd = [
   {
@@ -25,21 +25,8 @@ const jsonLd = [
   },
 ];
 
-const feature = ({ id, eyebrow, title, body, points, href, link, image, tone, flip }) => `
-      <section class="section feature section--${tone}${flip ? " feature--flip" : ""}" aria-labelledby="${id}">
-        <div class="container feature__inner">
-          ${picture(image, { sizes: "(min-width: 60em) 42vw, 100vw", className: "feature__media" })}
-          <div class="feature__text" data-reveal>
-            <p class="eyebrow${tone === "ivory-deep" ? "" : " eyebrow--light"}">${eyebrow}</p>
-            <h2 class="display-2" id="${id}">${title}</h2>
-            <p class="lead">${body}</p>
-            <ul class="tick-list${tone === "ivory-deep" ? "" : " tick-list--light"}">
-              ${points.map((p) => `<li>${p}</li>`).join("\n              ")}
-            </ul>
-            <a class="text-link" href="${href}">${link} <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-      </section>`;
+const communityOrder = ["lynnwood", "everett", "bothell", "mill-creek", "edmonds", "mukilteo"];
+const communityLinks = communityOrder.map((slug) => communities.find((c) => c.slug === slug));
 
 export default {
   path: "/",
@@ -50,116 +37,102 @@ export default {
   bodyClass: "page-home",
   jsonLd,
   content: () => `
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="container hero__inner">
-          <div class="hero__text">
-            <p class="eyebrow eyebrow--light">Max Petrov · Washington Real Estate</p>
-            <h1 class="hero__title" id="hero-title">See beyond the photos.</h1>
-            <p class="hero__lead">Buy and sell in Snohomish and King counties with practical insight from a construction and flipping background.</p>
+      <section class="home-hero" aria-labelledby="hero-title">
+        <div class="container home-hero__inner">
+          <p class="eyebrow">Max Petrov · Snohomish &amp; King County</p>
+          <h1 class="home-hero__title" id="hero-title">See beyond<br> the photos.</h1>
+          <div class="home-hero__foot">
+            <p class="home-hero__lead">A practical perspective on buying and selling homes in Washington.</p>
             <div class="button-row">
-              <a class="button button--light" href="/contact/">Work with Max</a>
-              <a class="button button--outline-light" href="/communities/">Explore the area</a>
+              <a class="button button--dark" href="/contact/">Work with Max</a>
+              <a class="button button--outline-dark" href="/communities/">Explore communities</a>
             </div>
           </div>
-          ${picture("maxMarina", { sizes: "(min-width: 60em) 40vw, 100vw", priority: true, className: "hero__media", positionMobile: "50% 14%" })}
         </div>
       </section>
 
-      <section class="strip" aria-label="At a glance">
-        <ul class="container strip__list">
-          <li><span>Construction &amp; flipping background</span></li>
-          <li><span>Snohomish &amp; King counties</span></li>
-          <li><span>English &amp; <span lang="ru">Русский</span></span></li>
+      <section class="positioning" aria-label="At a glance">
+        <ul class="container positioning__list">
+          <li>Construction &amp; flipping experience</li>
+          <li>Snohomish &amp; King counties</li>
+          <li>English &amp; Russian</li>
         </ul>
       </section>
 
-      <section class="section section--ivory meet" aria-labelledby="meet-title">
+      <section class="home-section paths" aria-labelledby="paths-title">
+        <div class="container">
+          <h2 class="display-2 paths__title" id="paths-title">A clearer path to your next home.</h2>
+          <div class="paths__grid">
+            <article class="path" aria-labelledby="path-buying">
+              <h3 class="path__title" id="path-buying">Buying</h3>
+              <p>Look beyond staging. Understand the home, weigh the tradeoffs, and make an informed offer.</p>
+              <a class="text-link" href="/buyers/">Explore buying with Max <span aria-hidden="true">→</span></a>
+            </article>
+            <article class="path" aria-labelledby="path-selling">
+              <h3 class="path__title" id="path-selling">Selling</h3>
+              <p>Focus preparation where it matters, price with context, and present your home with care.</p>
+              <a class="text-link" href="/sellers/">Explore selling with Max <span aria-hidden="true">→</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section meet" aria-labelledby="meet-title">
         <div class="container meet__inner">
-          ${picture("maxInterior", { sizes: "(min-width: 60em) 34vw, 100vw", className: "meet__media" })}
-          <div class="meet__text" data-reveal>
+          ${picture("maxMarina", { sizes: "(min-width: 60em) 460px, 100vw", className: "meet__media" })}
+          <div class="meet__text">
             <p class="eyebrow">Meet Max</p>
-            <h2 class="display-2" id="meet-title">A practical partner for a big decision.</h2>
-            <p class="lead">Max Petrov helps buyers and sellers across Snohomish and King counties make clear, confident decisions about homes.</p>
-            <p>His ${site.constructionExperience} means he looks past fresh paint and staging to how a house is built, how it has been cared for, and what it may need next. He keeps advice straightforward, explains the tradeoffs, and works alongside your inspector, lender, and other professionals. He works with clients in English and Russian.</p>
+            <h2 class="display-2" id="meet-title">A practical eye. A personal approach.</h2>
+            <p>Max Petrov helps buyers and sellers across Snohomish and King counties. He brings ${site.constructionExperience} to every home he walks through: how it was built, how it has been cared for, and what it may need next. His advice is clear and practical, he works alongside your inspector and lender, and he serves clients in English and Russian.</p>
             <a class="text-link" href="/about/">More about Max <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
-${feature({
-  id: "buyers-title",
-  eyebrow: "For buyers",
-  title: "Buy with a clearer view of the house.",
-  body: "Compare homes on how they’re built and maintained, not just how they’re staged.",
-  points: [
-    "Condition questions worth raising with your inspector",
-    "Realistic thinking about renovation ideas",
-    "Offers shaped by what you learned",
-  ],
-  href: "/buyers/",
-  link: "Buying with Max",
-  image: "maxHouse",
-  tone: "ivory-deep",
-  flip: true,
-})}
-${feature({
-  id: "sellers-title",
-  eyebrow: "For sellers",
-  title: "Sell with a plan that fits the house.",
-  body: "Decide what’s worth fixing, price with context, and present the home’s real strengths.",
-  points: [
-    "Preparation priorities buyers are likely to notice",
-    "Pricing based on comparable sales and condition",
-    "Accurate, well-prepared presentation",
-  ],
-  href: "/sellers/",
-  link: "Selling with Max",
-  image: "maxBrick",
-  tone: "slate",
-})}
 
-      <section class="section section--ivory perspective" aria-labelledby="perspective-title">
-        <div class="container perspective__inner">
-          <div class="perspective__head" data-reveal>
-            <p class="eyebrow">The construction perspective</p>
-            <h2 class="display-2" id="perspective-title">How a house is built shapes what it’s worth to you.</h2>
-          </div>
-          ${picture("maxStudio", { sizes: "(min-width: 60em) 30vw, 100vw", className: "perspective__media" })}
-          <ol class="numbered">
-            <li data-reveal><h3>Read condition signals</h3><p>Spot what deserves a closer look before you commit.</p></li>
-            <li data-reveal><h3>Consider renovation potential</h3><p>Think through which changes are practical and what they involve.</p></li>
-            <li data-reveal><h3>Prioritize preparation</h3><p>Put seller effort where buyers are likely to notice it.</p></li>
-            <li data-reveal><h3>Understand tradeoffs</h3><p>Weigh location, condition, size, and price together.</p></li>
+      <section class="section--navy home-section perspective" aria-labelledby="perspective-title">
+        <div class="container">
+          <h2 class="display-2 perspective__title" id="perspective-title">What’s beneath the surface matters.</h2>
+          <ol class="perspective__list">
+            <li>
+              <h3>Condition</h3>
+              <p>Know which questions deserve closer investigation.</p>
+            </li>
+            <li>
+              <h3>Potential</h3>
+              <p>Consider improvements in the context of the whole property.</p>
+            </li>
+            <li>
+              <h3>Preparation</h3>
+              <p>Focus effort on changes that support the selling plan.</p>
+            </li>
           </ol>
-          <p class="perspective__note">Max’s observations help you decide what to investigate. They complement a licensed home inspection; they don’t replace it.</p>
+          <p class="perspective__note">This perspective complements professional inspections; it doesn’t replace them.</p>
         </div>
       </section>
 
-      <section class="section section--ivory-deep area" aria-labelledby="area-title">
-        <div class="container area__inner">
-          <figure class="area__figure">
-            ${picture("mukilteoLighthouse", { sizes: "(min-width: 60em) 55vw, 100vw", className: "area__media" })}
+      <section class="home-section places" aria-labelledby="places-title">
+        <div class="container places__inner">
+          <figure class="places__figure">
+            ${picture("mukilteoLighthouse", { sizes: "(min-width: 60em) 680px, 100vw", className: "places__media" })}
             <figcaption>Mukilteo Lighthouse Park</figcaption>
           </figure>
-          <div class="area__text" data-reveal>
-            <p class="eyebrow">Explore the area</p>
-            <h2 class="display-2" id="area-title">Six communities, each with its own character.</h2>
-            <ul class="area__list">
-              ${communities
+          <div class="places__text">
+            <h2 class="display-2" id="places-title">Find your place in the Northwest.</h2>
+            <ul class="places__list">
+              ${communityLinks
                 .map(
-                  (c) => `<li><a href="/communities/#${c.slug}"><span class="area__name">${c.name}</span><span class="area__arrow" aria-hidden="true">→</span></a></li>`,
+                  (c) => `<li><a href="/communities/#${c.slug}"><span class="places__name">${c.name}</span><span class="places__arrow" aria-hidden="true">→</span></a></li>`,
                 )
                 .join("\n              ")}
             </ul>
-            <a class="text-link" href="/communities/">All community guides <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
 
-      ${closingCta({
-        id: "closing-title",
-        title: "Your next move starts with a conversation.",
-        lead: "Buying, selling, or still deciding, start with your goals and timing.",
-        label: "Let’s talk",
-        image: "maxSkyline",
-      })}`,
+      <section class="home-section home-cta" aria-labelledby="cta-title">
+        <div class="container home-cta__inner">
+          <h2 class="home-cta__title" id="cta-title">Let’s talk about your next move.</h2>
+          <a class="button button--dark" href="/contact/">Let’s talk</a>
+        </div>
+      </section>`,
 };

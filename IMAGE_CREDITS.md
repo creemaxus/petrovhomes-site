@@ -14,11 +14,8 @@ and 1024 px wide, re-encoded as AVIF and WebP, and stripped of all metadata
 | --- | --- |
 | `references/2.jpg` | `max-petrov-marina-*`, plus the share image `og-petrov-homes.jpg` |
 | `references/1.jpg` | `max-petrov-house-exterior-*` |
-| `references/8.jpg` | `max-petrov-interior-*` |
 | `references/9.jpg` | `max-petrov-brick-wall-*` |
-| `references/4.jpg` | `max-petrov-studio-*` |
 | `references/5.jpeg` | `max-petrov-studio-close-*` |
-| `references/6.jpg` | `max-petrov-city-skyline-*` |
 | `references/7.jpg` | `max-petrov-outdoor-portrait-*` |
 | `references/3.jpg` | `max-petrov-cafe-*` |
 | `references/10.jpg` | `max-petrov-cafe-laptop-*` |

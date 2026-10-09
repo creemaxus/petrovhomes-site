@@ -1,9 +1,7 @@
-// Petrov Homes: mobile navigation, scroll reveals, and the contact form.
+// Petrov Homes: mobile navigation and the contact form.
 // Everything here is progressive enhancement; pages work without it.
 
 (() => {
-  const root = document.documentElement;
-
   // Mobile navigation
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.getElementById("site-nav");
@@ -41,26 +39,6 @@
     window.matchMedia("(min-width: 56.0625em)").addEventListener("change", (event) => {
       if (event.matches) setOpen(false);
     });
-  }
-
-  // Scroll reveal
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const revealables = document.querySelectorAll("[data-reveal]");
-
-  if (!reduceMotion && "IntersectionObserver" in window && revealables.length) {
-    root.classList.add("js-reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-    );
-    revealables.forEach((el) => observer.observe(el));
   }
 
   // Contact form (only present once an endpoint is configured)

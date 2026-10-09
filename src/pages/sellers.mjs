@@ -47,13 +47,13 @@ export default {
 
       <section class="section section--slate prep" aria-labelledby="prep-title">
         <div class="container">
-          <div class="prep__head" data-reveal>
+          <div class="prep__head">
             <p class="eyebrow eyebrow--light">Preparation</p>
             <h2 class="display-2" id="prep-title">Where a builder’s eye helps before you list.</h2>
             <p class="lead">Starting points for a conversation, not a checklist.</p>
           </div>
           <div class="prep__columns">
-            <div data-reveal>
+            <div>
               <h3>Often worth considering</h3>
               <ul class="tick-list tick-list--light">
                 <li>Visible deferred maintenance buyers and inspectors will notice</li>
@@ -62,7 +62,7 @@ export default {
                 <li>Records of past repairs, permits, and upgrades</li>
               </ul>
             </div>
-            <div data-reveal>
+            <div>
               <h3>Often worth a second thought</h3>
               <ul class="tick-list tick-list--light tick-list--muted">
                 <li>Major remodels started shortly before listing</li>

@@ -34,7 +34,7 @@ export default {
               <p class="community__county">${c.county}</p>
               <h2 class="display-2" id="${c.slug}-title">${c.name}</h2>
             </header>
-            <div class="community__body" data-reveal>
+            <div class="community__body">
               <p class="lead">${c.summary}</p>
               <dl class="community__details">
                 <div><dt>Housing</dt><dd>${c.housing}</dd></div>

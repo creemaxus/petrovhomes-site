@@ -37,7 +37,7 @@ export default {
             ${picture("maxCafe", { sizes: "(min-width: 60em) 30vw, 70vw", className: "approach__main" })}
             ${picture("maxStudioClose", { sizes: "(min-width: 60em) 18vw, 42vw", className: "approach__inset" })}
           </div>
-          <div class="approach__text" data-reveal>
+          <div class="approach__text">
             <p class="eyebrow">How Max works</p>
             <h2 class="display-2" id="approach-title">Practical, direct, and built around your plans.</h2>
             <dl class="principles">
