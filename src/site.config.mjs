@@ -20,25 +20,24 @@ export const site = {
   languages: ["English", "Russian"],
 
   // Washington requires real estate advertising to identify the brokerage
-  // the agent is licensed with. Fill these in before publishing.
+  // the agent is licensed with. Leave unverified fields as null.
   brokerage: {
-    name: null, // TODO: Licensed brokerage name exactly as registered, e.g. "Example Realty"
-    url: null, // TODO: Optional brokerage website, e.g. "https://example.com"
-    address: null, // TODO: Optional office address if the brokerage requires it
+    name: "Eklund Real Estate",
+    url: null,
+    address: null,
   },
 
   license: {
-    number: null, // TODO: Washington real estate license number, if you want it shown
+    number: null,
   },
 
   contact: {
-    email: null, // TODO: Verified email, e.g. "max@petrovhomes.com"
-    phone: null, // TODO: Verified phone for tel: links, e.g. "+14255550123"
-    phoneDisplay: null, // TODO: How the phone number should read, e.g. "(425) 555-0123"
+    email: "max@petrovhomes.com",
+    phone: "+12063604444",
+    phoneDisplay: "(206) 360-4444",
 
-    // TODO: URL that accepts a JSON POST and returns a 2xx status on success
-    // (for example a Formspree form URL or a future Worker route such as
-    // "/api/contact"). The contact form stays hidden until this is set.
+    // URL that accepts a JSON POST and returns a 2xx status on success.
+    // The contact form stays hidden until a working delivery endpoint exists.
     formEndpoint: process.env.CONTACT_FORM_ENDPOINT || null,
   },
 

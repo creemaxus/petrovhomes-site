@@ -60,8 +60,8 @@ export const images = {
     file: "home-hero-northwest",
     widths: [960, 1600, 2250],
     ratio: [16, 9],
-    position: "42% 48%",
-    positionMobile: "28% 58%",
+    position: "32% 46%",
+    positionMobile: "22% 58%",
     alt: "Mukilteo’s waterfront, with the lighthouse, historic houses, and the ferry dock on Possession Sound",
   },
   serviceBuyersInterior: {
@@ -84,9 +84,9 @@ export const images = {
     file: "service-communities-region",
     widths: [480, 900],
     ratio: [4, 3],
-    position: "72% 58%",
-    positionMobile: "78% 62%",
-    alt: "Aerial view of Mukilteo Lighthouse Park, with the lighthouse, historic quarters, and the shoreline",
+    position: "50% 28%",
+    positionMobile: "62% 22%",
+    alt: "Mukilteo’s waterfront, with the ferry dock, shoreline buildings, and Possession Sound",
   },
   communityEdmonds: {
     file: "community-edmonds",

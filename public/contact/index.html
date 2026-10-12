@@ -46,6 +46,7 @@
             <li><a href="/communities/">Communities</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/" aria-current="page">Contact</a></li>
+            <li class="site-nav__phone"><a href="tel:+12063604444">(206) 360-4444</a></li>
           </ul>
         </nav>
       </div>
@@ -63,26 +64,30 @@
 
       <section class="section section--white">
         <div class="container contact">
-          <div class="contact__info">
-            <h2 class="display-3">What to expect</h2>
-            <ul class="tick-list">
-              <li>A conversation about your goals, timing, and budget</li>
-              <li>Straightforward answers about the process and next steps</li>
-              <li>Practical perspective on condition, preparation, and renovation questions</li>
-              <li>Service in English or <span lang="ru">по-русски</span></li>
-            </ul>
+          <div class="contact-panel">
+          <div class="contact-direct">
+            <h2 class="contact-panel__title">Reach Max directly</h2>
+            <p class="contact-context" data-inquiry-context hidden></p>
+            <ul class="contact-actions"><li>
+              <a class="button button--dark" href="tel:+12063604444">Call Max</a>
+              <span>(206) 360-4444</span>
+            </li><li>
+              <a class="button button--outline-dark" href="mailto:max@petrovhomes.com" data-contact-email>Email Max</a>
+              <span>max@petrovhomes.com</span>
+            </li></ul>
             <dl class="contact__meta">
-              <div><dt>Service area</dt><dd>Snohomish County and King County, Washington</dd></div>
-              <div><dt>Communities</dt><dd>Everett, Edmonds, Mukilteo, Lynnwood, Bothell, Mill Creek</dd></div>
+              <div><dt>Brokerage</dt><dd>Eklund Real Estate</dd></div>
+              <div><dt>Service area</dt><dd>Snohomish and King counties</dd></div>
+              <div><dt>Languages</dt><dd>English and Russian</dd></div>
             </dl>
           </div>
-          <div class="contact-panel">
-          <div class="contact-soon">
-            <h2 class="contact-panel__title">Contact details coming soon</h2>
-            <p>Direct contact details for Max are being finalized and will be posted here shortly. Thank you for your patience.</p>
+          
           </div>
+          <div class="contact__info">
+            <p class="contact__intro">Buying, selling, or exploring your options? Tell me a little about your plans.</p>
           </div>
         </div>
+        <script type="application/json" id="contact-allowlist">{"topics":{"buying":"Buying","selling":"Selling"},"communities":{"everett":"Everett","edmonds":"Edmonds","mukilteo":"Mukilteo","lynnwood":"Lynnwood","bothell":"Bothell","mill-creek":"Mill Creek"}}</script>
       </section>
     </main>
     <footer class="site-footer">
@@ -94,6 +99,8 @@
           <span class="wordmark__rule" aria-hidden="true"></span>
           <span class="wordmark__sub">Homes</span>
         </a>
+            <p class="site-footer__agent">Max Petrov</p>
+            <p class="site-footer__brokerage">Eklund Real Estate</p>
             <p class="site-footer__tagline">See beyond the photos. Buying and selling in Snohomish and King counties.</p>
           </div>
           <div>
@@ -103,6 +110,10 @@
           <div>
             <h2 class="footer-heading">Languages</h2>
             <p>English<br><span lang="ru">Русский</span> (Russian)</p>
+          </div>
+          <div>
+            <h2 class="footer-heading">Contact</h2>
+            <ul class="footer-list"><li><a href="tel:+12063604444">(206) 360-4444</a></li><li><a href="mailto:max@petrovhomes.com">max@petrovhomes.com</a></li></ul>
           </div>
           <nav aria-label="Footer">
             <h2 class="footer-heading">Explore</h2>
@@ -116,6 +127,7 @@
           </nav>
         </div>
         <div class="site-footer__legal">
+          <p>Max Petrov is licensed with Eklund Real Estate.</p>
           <p>&copy; 2026 Max Petrov. Petrov Homes is the personal brand of real estate agent Max Petrov.</p>
         </div>
       </div>

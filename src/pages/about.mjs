@@ -18,11 +18,13 @@ export default {
       <section class="section section--white">
         <div class="container about">
           <div class="prose about__body">
+            <p class="about__affiliation">${esc(site.agentName)} · ${esc(site.brokerage.name)}.</p>
             <p class="prose__lede">Max Petrov is the real estate agent behind Petrov Homes, helping people buy and sell in Snohomish and King counties.</p>
             <p>His approach comes from ${esc(site.constructionExperience)}. That background shapes how he walks through a property: how it has been maintained, what a renovation would realistically involve, and which updates are likely to matter to the next owner.</p>
             <p>For buyers, that means better-informed conversations about condition and potential. For sellers, it means practical guidance on what to fix, what to refresh, and what to leave alone.</p>
           </div>
           <dl class="about__facts">
+            <div><dt>Affiliation</dt><dd>${esc(site.agentName)} · ${esc(site.brokerage.name)}</dd></div>
             <div><dt>Primary market</dt><dd>Snohomish County, WA</dd></div>
             <div><dt>Also serving</dt><dd>King County, WA</dd></div>
             <div><dt>Background</dt><dd>${esc(site.constructionExperience)}</dd></div>

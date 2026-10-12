@@ -54,23 +54,60 @@
     window.addEventListener("resize", syncHeader);
   }
 
-  // Contact form (only present once an endpoint is configured)
+  // Inquiry context from /contact/?topic= and /contact/?community=.
+  // Only allowlisted values are used; query strings are never written as HTML.
+  const params = new URLSearchParams(window.location.search);
+  let topics = { buying: "Buying", selling: "Selling" };
+  let communityNames = {};
+  const allowlistEl = document.getElementById("contact-allowlist");
+  if (allowlistEl) {
+    try {
+      const data = JSON.parse(allowlistEl.textContent);
+      if (data.topics) topics = data.topics;
+      if (data.communities) communityNames = data.communities;
+    } catch {
+      // Keep the built-in topic allowlist if the page payload is missing.
+    }
+  }
+
+  const topicKey = params.get("topic");
+  const communityKey = params.get("community");
+  const topicLabel = topicKey && Object.hasOwn(topics, topicKey) ? topics[topicKey] : "";
+  const communityLabel =
+    communityKey && Object.hasOwn(communityNames, communityKey) ? communityNames[communityKey] : "";
+
+  const context = document.querySelector("[data-inquiry-context]");
+  if (context && (communityLabel || topicLabel)) {
+    context.hidden = false;
+    context.textContent = communityLabel
+      ? `You’re asking about ${communityLabel}.`
+      : `You’re asking about ${topicLabel.toLowerCase()}.`;
+  }
+
+  document.querySelectorAll("[data-contact-email]").forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const email = href.replace(/^mailto:/i, "").split("?")[0];
+    if (!email) return;
+    const subject = communityLabel
+      ? `Website inquiry — Exploring ${communityLabel}`
+      : topicLabel
+        ? `Website inquiry — ${topicLabel}`
+        : "";
+    link.href = subject ? `mailto:${email}?subject=${encodeURIComponent(subject)}` : `mailto:${email}`;
+  });
+
+  // Contact form (only present once a real delivery endpoint is configured)
   const form = document.querySelector("[data-contact-form]");
   if (!form) return;
 
-  const params = new URLSearchParams(window.location.search);
   const typeSelect = form.querySelector("#cf-type");
-  const message = form.querySelector("#cf-message");
-  const topic = params.get("topic");
-  const community = params.get("community");
+  const communityField = form.querySelector("#cf-community");
 
-  if (topic && typeSelect.querySelector(`option[value="${CSS.escape(topic)}"]`)) {
-    typeSelect.value = topic;
-  }
-  if (community && /^[a-z-]{2,30}$/.test(community)) {
-    const name = community.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    if (!typeSelect.value) typeSelect.value = "community";
-    if (!message.value) message.value = `I'd like to learn more about ${name}.`;
+  if (communityLabel) {
+    if (typeSelect.querySelector('option[value="community"]')) typeSelect.value = "community";
+    if (communityField) communityField.value = communityKey;
+  } else if (topicKey && typeSelect.querySelector(`option[value="${CSS.escape(topicKey)}"]`)) {
+    typeSelect.value = topicKey;
   }
 
   const status = form.querySelector("[data-form-status]");

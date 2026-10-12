@@ -22,6 +22,12 @@ const jsonLd = [
     knowsLanguage: ["en", "ru"],
     ...(site.contact.email && { email: site.contact.email }),
     ...(site.contact.phone && { telephone: site.contact.phone }),
+    ...(site.brokerage.name && {
+      worksFor: {
+        "@type": "Organization",
+        name: site.brokerage.name,
+      },
+    }),
   },
 ];
 

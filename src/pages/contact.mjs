@@ -1,16 +1,21 @@
 import { site } from "../site.config.mjs";
 import { communities } from "../content/communities.mjs";
-import { pageHeader, contactMethods, socialLinks, esc } from "../layout.mjs";
+import { pageHeader, esc } from "../layout.mjs";
 
 const inquiryTypes = [
-  ["buying", "Buying a home"],
-  ["selling", "Selling a home"],
-  ["buying-and-selling", "Buying and selling"],
-  ["community", "A question about a community"],
-  ["other", "Something else"],
+  ["buying", "Buying"],
+  ["selling", "Selling"],
+  ["community", "Exploring communities"],
+  ["other", "Other"],
 ];
 
-// Rendered only when site.contact.formEndpoint is configured.
+const inquiryAllowlist = {
+  topics: { buying: "Buying", selling: "Selling" },
+  communities: Object.fromEntries(communities.map((c) => [c.slug, c.name])),
+};
+
+// Rendered only when site.contact.formEndpoint is configured with a real
+// delivery path. A successful 2xx means the provider accepted the message.
 function contactForm() {
   return `<form class="contact-form" action="${esc(site.contact.formEndpoint)}" method="post" novalidate data-contact-form>
             <h2 class="contact-panel__title">Send a message</h2>
@@ -35,13 +40,15 @@ function contactForm() {
             </div>
 
             <div class="field">
-              <label for="cf-type">What can Max help with? <span class="field__req" aria-hidden="true">*</span></label>
+              <label for="cf-type">Inquiry type <span class="field__req" aria-hidden="true">*</span></label>
               <select id="cf-type" name="inquiry_type" required aria-describedby="cf-type-error">
                 <option value="">Choose one</option>
                 ${inquiryTypes.map(([value, label]) => `<option value="${value}">${label}</option>`).join("\n                ")}
               </select>
               <p class="field__error" id="cf-type-error" data-error-for="cf-type"></p>
             </div>
+
+            <input type="hidden" id="cf-community" name="community" value="">
 
             <div class="field">
               <label for="cf-message">Message <span class="field__req" aria-hidden="true">*</span></label>
@@ -62,20 +69,32 @@ function contactForm() {
 }
 
 function contactPanel() {
-  const methods = [...contactMethods(), ...socialLinks()];
-  const direct = methods.length
-    ? `<div class="contact-direct">
-            <h2 class="contact-panel__title">Contact Max directly</h2>
-            <ul>${methods.map((m) => `<li>${m}</li>`).join("")}</ul>
-          </div>`
-    : "";
+  const { email, phone, phoneDisplay } = site.contact;
+  const actions = [];
+  if (phone) {
+    actions.push(`<li>
+              <a class="button button--dark" href="tel:${esc(phone)}">Call Max</a>
+              <span>${esc(phoneDisplay || phone)}</span>
+            </li>`);
+  }
+  if (email) {
+    actions.push(`<li>
+              <a class="button button--outline-dark" href="mailto:${esc(email)}" data-contact-email>Email Max</a>
+              <span>${esc(email)}</span>
+            </li>`);
+  }
 
-  if (site.contact.formEndpoint) return `${direct}${contactForm()}`;
-  if (direct) return direct;
-  return `<div class="contact-soon">
-            <h2 class="contact-panel__title">Contact details coming soon</h2>
-            <p>Direct contact details for Max are being finalized and will be posted here shortly. Thank you for your patience.</p>
-          </div>`;
+  return `<div class="contact-direct">
+            <h2 class="contact-panel__title">Reach Max directly</h2>
+            <p class="contact-context" data-inquiry-context hidden></p>
+            ${actions.length ? `<ul class="contact-actions">${actions.join("")}</ul>` : ""}
+            <dl class="contact__meta">
+              ${site.brokerage.name ? `<div><dt>Brokerage</dt><dd>${esc(site.brokerage.name)}</dd></div>` : ""}
+              <div><dt>Service area</dt><dd>Snohomish and King counties</dd></div>
+              <div><dt>Languages</dt><dd>English and Russian</dd></div>
+            </dl>
+          </div>
+          ${site.contact.formEndpoint ? contactForm() : ""}`;
 }
 
 export default {
@@ -93,22 +112,13 @@ export default {
 
       <section class="section section--white">
         <div class="container contact">
-          <div class="contact__info">
-            <h2 class="display-3">What to expect</h2>
-            <ul class="tick-list">
-              <li>A conversation about your goals, timing, and budget</li>
-              <li>Straightforward answers about the process and next steps</li>
-              <li>Practical perspective on condition, preparation, and renovation questions</li>
-              <li>Service in English or <span lang="ru">по-русски</span></li>
-            </ul>
-            <dl class="contact__meta">
-              <div><dt>Service area</dt><dd>${site.primaryMarket} and ${site.secondaryMarket}, ${site.state}</dd></div>
-              <div><dt>Communities</dt><dd>${communities.map((c) => c.name).join(", ")}</dd></div>
-            </dl>
-          </div>
           <div class="contact-panel">
           ${contactPanel()}
           </div>
+          <div class="contact__info">
+            <p class="contact__intro">Buying, selling, or exploring your options? Tell me a little about your plans.</p>
+          </div>
         </div>
+        <script type="application/json" id="contact-allowlist">${JSON.stringify(inquiryAllowlist)}</script>
       </section>`,
 };

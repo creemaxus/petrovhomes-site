@@ -105,8 +105,8 @@ export function steps(items) {
 export function contactMethods() {
   const { email, phone, phoneDisplay } = site.contact;
   const items = [];
-  if (email) items.push(`<a href="mailto:${esc(email)}">${esc(email)}</a>`);
   if (phone) items.push(`<a href="tel:${esc(phone)}">${esc(phoneDisplay || phone)}</a>`);
+  if (email) items.push(`<a href="mailto:${esc(email)}">${esc(email)}</a>`);
   return items;
 }
 
@@ -159,12 +159,16 @@ function wordmark() {
 }
 
 function header(page) {
+  const { phone, phoneDisplay } = site.contact;
   const links = nav
     .map(({ href, label }) => {
       const current = page.path.startsWith(href) ? ` aria-current="page"` : "";
       return `<li><a href="${href}"${current}>${label}</a></li>`;
     })
     .join("\n            ");
+  const phoneItem = phone
+    ? `<li class="site-nav__phone"><a href="tel:${esc(phone)}">${esc(phoneDisplay || phone)}</a></li>`
+    : "";
   return `<a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container site-header__inner">
@@ -176,6 +180,7 @@ function header(page) {
         <nav class="site-nav" id="site-nav" aria-label="Main">
           <ul>
             ${links}
+            ${phoneItem}
           </ul>
         </nav>
       </div>
@@ -209,6 +214,8 @@ function footer() {
         <div class="site-footer__top">
           <div class="site-footer__brand">
             ${wordmark()}
+            <p class="site-footer__agent">${esc(site.agentName)}</p>
+            ${brokerage.name ? `<p class="site-footer__brokerage">${esc(brokerage.name)}</p>` : ""}
             <p class="site-footer__tagline">See beyond the photos. Buying and selling in Snohomish and King counties.</p>
           </div>
           <div>

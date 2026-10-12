@@ -68,15 +68,21 @@ Redfin, and don't present portrait backgrounds as Max's listings.
 
 ## Connecting the contact form
 
-The contact form stays hidden until an endpoint is configured. Visitors see a
-short "Contact details coming soon" message instead.
+Phone and email are live on the site. The contact form stays hidden until a
+working delivery endpoint is configured. Do not show a form that cannot send.
 
-1. Set up an endpoint that accepts a JSON `POST` and returns a 2xx status on
-   success. A Formspree form URL works, or you can add a Worker route later.
-   The request body looks like this:
-   `{ name, email, phone, inquiry_type, message }`.
-2. Put its URL in `contact.formEndpoint` in `src/site.config.mjs` and rebuild.
-3. Submit a real test message before publishing.
+To enable the form later:
+
+1. Set up an endpoint that accepts a JSON `POST` and returns a 2xx status only
+   after the delivery provider accepts the message. A Worker route such as
+   `/api/contact` (Cloudflare Email Routing `send_email` binding or a verified
+   transactional sender) works. The request body looks like this:
+   `{ name, email, phone, inquiry_type, community, message }`.
+2. Keep the recipient fixed server-side (`max@petrovhomes.com`). Put the
+   visitor’s address in Reply-To; do not send as the visitor.
+3. Put the endpoint URL in `contact.formEndpoint` in `src/site.config.mjs`
+   or set `CONTACT_FORM_ENDPOINT`, then rebuild.
+4. Submit a clearly labelled internal test before publishing.
 
 To preview the form locally without changing the config, run
 `CONTACT_FORM_ENDPOINT=/api/test npm run build`. Submissions will show the error

@@ -31,7 +31,7 @@ only when the photograph’s location was verified.
 | Files | Use | Subject | Creator | License | Source |
 | --- | --- | --- | --- | --- | --- |
 | `home-hero-northwest-*` | Homepage hero | Crop of Mukilteo Lighthouse Park road / waterfront, emphasizing the lighthouse, houses, and ferry | Ldub0775 | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:Mukilteo_Lighthouse_Park_road_2026.jpg) |
-| `service-communities-region-*` | Communities service card and Communities page header | Crop of Mukilteo Lighthouse Park aerial | Ldub0775 | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:Mukilteo_Lighthouse_Park_2026.jpg) |
+| `service-communities-region-*` | Communities service card and Communities page header | Different crop of the same Mukilteo waterfront photograph, emphasizing the ferry dock and shoreline buildings rather than the lighthouse | Ldub0775 | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:Mukilteo_Lighthouse_Park_road_2026.jpg) |
 | `community-mukilteo-*` | Mukilteo community card | Mukilteo Lighthouse and keeper’s quarters | Ldub0775 | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:Mukilteo_Lighthouse_2026.jpg) |
 | `community-edmonds-*` | Edmonds community card | Mount Rainier from the Kingston–Edmonds ferry | Alteredrat | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | [Commons](https://commons.wikimedia.org/wiki/File:View_of_Mount_Rainier_from_Kingston-Edmonds_ferry.jpg) |
 | `service-buyers-interior-*` | Buyers service card and Buyers page header | Bright residential living room (generic, not a local listing) | Curtis Adams | [Pexels License](https://www.pexels.com/license/) (attribution not required) | [Pexels](https://www.pexels.com/photo/bright-modern-living-room-interior-with-natural-light-36777853/) |
@@ -44,9 +44,11 @@ Older `mukilteo-lighthouse-park-*`, `mukilteo-lighthouse-*`, and
 They are no longer referenced by page templates.
 
 Lynnwood, Everett, Bothell, and Mill Creek remain text links. No suitably
-licensed, location-verified photograph was available for those cities.
-The Edmonds card still uses the ferry / Rainier view because no stronger
-no-attribution downtown or waterfront alternative was found.
+licensed, location-verified photograph without mandatory public attribution
+was available for those cities. Modern Commons photos of those places are
+typically CC BY-SA. The Edmonds card still uses the ferry / Rainier view
+because no stronger no-attribution downtown, waterfront, or ferry-terminal
+photograph was available.
 
 Generic interiors and exteriors are not labeled as Washington listings,
 Max’s projects, or completed transactions.
