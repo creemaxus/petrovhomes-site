@@ -10,7 +10,7 @@ export default {
   content: () => `
       ${pageHeader({
         eyebrow: "About",
-        title: "About Max Petrov",
+        title: "About Max.",
         lead: "A real estate agent who looks at homes the way a builder does.",
         image: "maxOutdoor",
       })}

@@ -38,7 +38,7 @@
       }
     });
 
-    window.matchMedia("(min-width: 56.0625em)").addEventListener("change", (event) => {
+    window.matchMedia("(min-width: 68.0625em)").addEventListener("change", (event) => {
       if (event.matches) setOpen(false);
     });
   }
@@ -80,8 +80,10 @@
   if (context && (communityLabel || topicLabel)) {
     context.hidden = false;
     context.textContent = communityLabel
-      ? `You’re asking about ${communityLabel}.`
-      : `You’re asking about ${topicLabel.toLowerCase()}.`;
+      ? `Considering ${communityLabel}? I can help you get to know the area.`
+      : topicKey === "selling"
+        ? "Thinking about selling? Let’s discuss your home and timing."
+        : "Thinking about buying? Let’s talk through your goals and timing.";
   }
 
   document.querySelectorAll("[data-contact-email]").forEach((link) => {

@@ -216,7 +216,7 @@ function footer() {
             ${wordmark()}
             <p class="site-footer__agent">${esc(site.agentName)}</p>
             ${brokerage.name ? `<p class="site-footer__brokerage">${esc(brokerage.name)}</p>` : ""}
-            <p class="site-footer__tagline">See beyond the photos. Buying and selling in Snohomish and King counties.</p>
+            <p class="site-footer__tagline">Buying and selling in Snohomish and King counties.</p>
           </div>
           <div>
             <h2 class="footer-heading">Service area</h2>

@@ -9,7 +9,7 @@ export default {
   content: () => `
       ${pageHeader({
         eyebrow: "Sellers",
-        title: "Selling your home in Snohomish and King counties",
+        title: "Selling your home.",
         lead: "A practical plan for pricing, preparing, and presenting your home.",
         image: "sellersPageExterior",
         layout: "bleed",

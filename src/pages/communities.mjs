@@ -10,8 +10,8 @@ export default {
   content: () => `
       ${pageHeader({
         eyebrow: "Communities",
-        title: "Communities in Snohomish and King counties",
-        lead: "Six places where Max helps buyers and sellers, from Puget Sound waterfront towns to established suburbs along I-5 and I-405.",
+        title: "Communities",
+        lead: "Six places Max knows well, from Puget Sound waterfront towns to established suburbs along I-5 and I-405.",
         image: "serviceCommunitiesRegion",
         layout: "bleed",
       })}

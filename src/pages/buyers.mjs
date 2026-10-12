@@ -32,7 +32,7 @@ export default {
   content: () => `
       ${pageHeader({
         eyebrow: "Buyers",
-        title: "Buying a home in Snohomish and King counties",
+        title: "Buying a home.",
         lead: "A clear process, and a practical second look at every house you’re seriously considering.",
         image: "serviceBuyersInterior",
         layout: "bleed",

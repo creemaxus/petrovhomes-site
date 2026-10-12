@@ -60,8 +60,8 @@ export const images = {
     file: "home-hero-northwest",
     widths: [960, 1600, 2250],
     ratio: [16, 9],
-    position: "32% 46%",
-    positionMobile: "22% 58%",
+    position: "18% 40%",
+    positionMobile: "12% 48%",
     alt: "Mukilteo’s waterfront, with the lighthouse, historic houses, and the ferry dock on Possession Sound",
   },
   serviceBuyersInterior: {
